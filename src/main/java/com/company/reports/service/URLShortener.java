@@ -20,13 +20,27 @@ public class URLShortener {
     @Value("${tiny.cc.api.key}")
     private String API_KEY;
 
+    @Value("${tiny.cc.api.token}")
+    private String API_TOKEN;
+
+    @Value("${tiny.cc.api.url}")
+    private String API_URI;
+
+    @Value("${tiny.cc.api.domain}")
+    private String domain;
+
+    @Value("${tiny.cc.api.alias}")
+    private String alias;
+    @Value("${tiny.cc.api.description}")
+    private String description;
+
     public String shortenURL(String longUrl) throws IOException, InterruptedException {
         String apiKey = API_KEY;
-        String apiToken="fBcwg985Cyxz7thw7k3zv0XnL8F18AdaTiBrGV1Y9aguW8fP1xkAm4rFWxUb";
-        String apiUrl = "https://api.tinyurl.com/create?api_token=" + apiKey;
-        String domain = "tinyurl.com";
-        String alias = "customerInvoiceLink";
-        String description="";
+        String apiToken=API_TOKEN;
+        String apiUrl = API_URI + apiKey;
+        String domain = this.domain;
+        String alias = this.alias;
+        String description=this.description;
 
         RequestObj requestObj=new RequestObj();
         requestObj.setUrl(longUrl);
