@@ -1,10 +1,13 @@
 package com.company.reports.model.thirdParty;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Data {
     String domain, alias;
-    boolean deleted, archived;
-    String analytics;
-    String tags;
+   // boolean deleted, archived;
+//    String analytics;
+//    String tags;
     String created_at, expires_at, tiny_url, url;
 
     public String getDomain() {
@@ -22,39 +25,6 @@ public class Data {
     public void setAlias(String alias) {
         this.alias = alias;
     }
-
-    public boolean isDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        this.deleted = deleted;
-    }
-
-    public boolean isArchived() {
-        return archived;
-    }
-
-    public void setArchived(boolean archived) {
-        this.archived = archived;
-    }
-
-    public String getAnalytics() {
-        return analytics;
-    }
-
-    public void setAnalytics(String analytics) {
-        this.analytics = analytics;
-    }
-
-    public String getTags() {
-        return tags;
-    }
-
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
-
     public String getCreated_at() {
         return created_at;
     }

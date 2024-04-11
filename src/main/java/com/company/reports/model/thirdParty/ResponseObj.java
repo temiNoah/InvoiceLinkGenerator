@@ -1,9 +1,12 @@
 package com.company.reports.model.thirdParty;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ResponseObj {
     private Data data;
     private String code;
-    private String errors;
+    private String[] errors;
 
     public Data getData() {
         return data;
@@ -21,11 +24,11 @@ public class ResponseObj {
         this.code = code;
     }
 
-    public String getErrors() {
+    public String[] getErrors() {
         return errors;
     }
 
-    public void setErrors(String errors) {
+    public void setErrors(String[] errors) {
         this.errors = errors;
     }
 }

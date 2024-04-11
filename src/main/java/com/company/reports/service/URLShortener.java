@@ -39,6 +39,7 @@ public class URLShortener {
                 .writerWithDefaultPrettyPrinter()
                 .writeValueAsString(requestObj);
 
+         requestBody =requestBody.replace("alias","Alias");
         System.out.println("api:" + API_KEY);
 //        String requestBody =String.format("{\"url\": \"%s\", \"domain\": \"%s\" ,\"Alias\": \"%s\",\"description\": \"%s\"}",
 //                longUrl, domain,alias,description);

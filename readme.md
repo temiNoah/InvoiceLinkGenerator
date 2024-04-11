@@ -110,11 +110,3 @@ The following technologies were used in this project:
 ## Architecture
 This project is built using Spring Boot and follows a RESTful API design. Any front-end framework can be used to communicate with the back-end through HTTP requests.
 
-## Contributing
-If you'd like to contribute to this project, please follow these steps:
-
-1. Fork this repository.
-2. Create a new branch with your feature or bug fix.
-3. Make your changes and commit them with descriptive commit messages.
-4. Push your changes to your fork.
-5. Create a pull request to merge your changes into the main repository.
