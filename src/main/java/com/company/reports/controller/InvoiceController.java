@@ -61,21 +61,22 @@ public class InvoiceController {
     @Autowired
     private URLConfig urlConfig;
 
+    @Value("${invoice.default.display.format}")
+    private String displayFormat;
 
     @PostMapping(ENDPOINT_GENERATE)
     public ResponseEntity<?> generateInvoice(@RequestBody InvoiceDataVo invoiceData) {
     	 JSONObject responseObject = null;
          String scheme = urlConfig.getScheme();
          String host = urlConfig.getHost();
-         String[] defaultPaths = urlConfig.getPath().contains("/") ? urlConfig.getPath().split("/"):
-                   new String[]{urlConfig.getPath()};
-         String[] path = Arrays.stream(Stream.concat(Arrays.stream(defaultPaths) ,Arrays.stream(new String[]{"download"})).toArray()).
-                         map(Object::toString).toArray(String[] :: new);
+         String[] paths = urlConfig.getPath();
+
         HashMap<String,String> params = new HashMap<>();
         try {
             String docUuid = invoiceService.generateInvoice(invoiceData);
-            params.put("invoiceID" , docUuid);
-            String longUrl = urlGenerator.generateURL(scheme,host,path,params);
+            params.put(urlConfig.getParams()[0] , docUuid);
+            params.put( urlConfig.getParams()[1], displayFormat);
+            String longUrl = urlGenerator.generateURL(scheme,host,paths,params);
             String shortenedUrl = urlShortener.shortenURL(longUrl);
             logger.info("Long UrL :{} , short URl : {} " , longUrl , shortenedUrl );
             responseObject= responseBuilder.buildSuccessResponse(docUuid, SUCCESS_MSG_DOWNLOAD_INVOICE,shortenedUrl);

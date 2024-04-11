@@ -12,8 +12,11 @@ public class URLConfig {
     @Value("${url.host}")
     private String host;
 
-    @Value("${url.path}")
-    private String path;
+    @Value("#{'${url.path}'.split('/')}")
+    private String[] path;
+
+    @Value("#{'${url.params}'.split(',')}")
+    private String[] params;
 
     public String getScheme(){
         return this.scheme;
@@ -23,7 +26,11 @@ public class URLConfig {
         return this.host;
     }
 
-    public String getPath(){
+    public String[] getPath(){
         return this.path;
+    }
+
+    public  String[] getParams(){
+        return this.params;
     }
 }

@@ -20,12 +20,15 @@ public class URLGenerator {
             UriComponentsBuilder builder = UriComponentsBuilder.newInstance();
             builder.scheme(scheme).host(host);
             Arrays.stream(paths)
-                    .forEach(path -> builder.path(path));
+                    .forEach(path -> builder.pathSegment(path));
+
 
             params.forEach((key, value) -> builder.queryParam(key, value));
 
             // Build the URI
             String url = builder.build().toUriString();
+
+            logger.info("Long Url Generated:" + url);
 
             return url;
 
